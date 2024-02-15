@@ -1,9 +1,7 @@
-import './Footer.css';
+import "./Footer.css";
 
 function Footer() {
-  return (
-    <footer className="footer">Simuratli©</footer>
-  )
+  return <footer className="footer">Simuratli©</footer>;
 }
 
-export default Footer
+export default Footer;

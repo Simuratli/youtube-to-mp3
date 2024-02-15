@@ -1,11 +1,7 @@
-import './Navbar.css';
+import "./Navbar.css";
 
 function Navbar() {
-  return (
-    <div className='navbar'>
-        YT MP3
-    </div>
-  )
+  return <div className="navbar">YT MP3</div>;
 }
 
-export default Navbar
+export default Navbar;

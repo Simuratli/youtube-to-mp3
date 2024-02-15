@@ -54,7 +54,7 @@ function Main() {
             </div>
             {
                 downloadURL && <div className="download">
-                <a download target='__blank' href={downloadURL}>Download</a>
+                <a download href={downloadURL}>Download</a>
             </div>
             }
         </div>

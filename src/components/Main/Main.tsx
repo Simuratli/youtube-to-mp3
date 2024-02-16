@@ -25,7 +25,7 @@ function Main() {
             type="text"
             placeholder="Enter URL"
           />
-          <button name="pasteButton" onClick={handlePaste}>
+          <button onClick={handlePaste}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="#000000"
@@ -50,7 +50,7 @@ function Main() {
             </svg>
           </button>
 
-          <button disabled={!valid} name="sendButton" onClick={handleOnClick}>
+          <button disabled={!valid} onClick={handleOnClick}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"

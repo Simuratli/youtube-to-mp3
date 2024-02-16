@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ChangeEvent } from "react";
 import axios from "axios";
+import { getYoutubeId } from "../utils/getYoutubeId";
 
 export function useDownload() {
   const [URL, setURL] = useState("");
@@ -13,36 +14,45 @@ export function useDownload() {
   };
 
   useEffect(() => {
-    const urlPattern = /^https?:\/\/(www\.)?youtube\.com\/watch\?v=[\w-]+$/;
-    setValid(urlPattern.test(URL));
+    const desktopPattern = /^https?:\/\/(www\.)?youtube\.com\/watch\?v=[\w-]+$/;
+    const mobilePattern =
+      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    const isValidURL = desktopPattern.test(URL) || !!URL.match(mobilePattern);
+    setValid(isValidURL);
   }, [URL]);
 
   const handleOnClick = async () => {
-    const options = {
-      method: "GET",
-      url: "https://youtube-mp36.p.rapidapi.com/dl",
-      params: { id: URL.split("?v=")[1] },
-      headers: {
-        "X-RapidAPI-Key": "2327fc59bbmshed31075027af188p1bed71jsn379d790bcd21",
-        "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
-      },
-    };
-
     try {
-      setLoading(true);
-      let response = await axios.request(options);
-      if (response.data.status === "processing") {
-        await new Promise(function (resolve) {
-          setTimeout(async function () {
-            resolve("");
-            response = await axios.request(options);
-          }, 2500);
-        });
+      const id = getYoutubeId(URL);
+      const options = {
+        method: "GET",
+        url: "https://youtube-mp36.p.rapidapi.com/dl",
+        params: { id: id },
+        headers: {
+          "X-RapidAPI-Key":
+            "2327fc59bbmshed31075027af188p1bed71jsn379d790bcd21",
+          "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
+        },
+      };
+
+      try {
+        setLoading(true);
+        let response = await axios.request(options);
+        if (response.data.status === "processing") {
+          await new Promise(function (resolve) {
+            setTimeout(async function () {
+              resolve("");
+              response = await axios.request(options);
+            }, 2500);
+          });
+        }
+        setDownloadURL(response.data.link);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
       }
-      setDownloadURL(response.data.link);
-      setLoading(false);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 

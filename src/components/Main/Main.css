@@ -26,7 +26,17 @@
 }
 
 .main .download {
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.download h1 {
+  width: clamp(7.5rem, 40.909vw - 1.705rem, 30rem);
+  font-size: clamp(1rem, 1.818vw + 0.591rem, 2rem);
+  font-weight: 600;
 }
 
 button:disabled {
@@ -45,4 +55,27 @@ button:disabled {
 .main button svg {
   height: 20px;
   width: 20px;
+}
+
+@media screen and (max-width: 860px) {
+  .main {
+    width: 100%;
+    /* padding: 20px; */
+  }
+
+  .main__content {
+    width: 100vw;
+    padding: 20px;
+  }
+
+  .prepare {
+    justify-content: space-between;
+  }
+
+  .main .download {
+    justify-content: space-between;
+  }
+  .download h1 {
+    width: 100%;
+  }
 }

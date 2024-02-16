@@ -71,8 +71,9 @@ function Main() {
         </div>
         {downloadURL && (
           <div className="download">
+            <h1>{title}.mp3</h1>
             <a download href={downloadURL}>
-              Download - {title}.mp3
+              Download
             </a>
           </div>
         )}

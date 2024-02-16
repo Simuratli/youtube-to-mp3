@@ -10,7 +10,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
       manifest: {
-        name: "Unkai youtube to mp3 converter",
+        name: "Unkai converter",
         short_name: "Unkai converter",
         theme_color: "#ffffff",
         icons: [

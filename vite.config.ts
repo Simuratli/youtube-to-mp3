@@ -11,7 +11,7 @@ export default defineConfig({
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
       manifest: {
         name: "Unkai converter",
-        short_name: "Unkai converter",
+        short_name: "Unkai  converter",
         theme_color: "#ffffff",
         icons: [
           {

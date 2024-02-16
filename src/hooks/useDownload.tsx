@@ -8,6 +8,7 @@ export function useDownload() {
   const [downloadURL, setDownloadURL] = useState("");
   const [valid, setValid] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [title, setTitle] = useState("");
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setURL(e.target.value);
@@ -47,6 +48,7 @@ export function useDownload() {
           });
         }
         setDownloadURL(response.data.link);
+        setTitle(response.data.title);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -76,5 +78,6 @@ export function useDownload() {
     URL,
     setURL,
     handlePaste,
+    title,
   };
 }

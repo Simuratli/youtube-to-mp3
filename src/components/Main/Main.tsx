@@ -11,6 +11,7 @@ function Main() {
     downloadURL,
     URL,
     handlePaste,
+    title,
   } = useDownload();
 
   return (
@@ -71,7 +72,7 @@ function Main() {
         {downloadURL && (
           <div className="download">
             <a download href={downloadURL}>
-              Download
+              Download - {title}.mp3
             </a>
           </div>
         )}

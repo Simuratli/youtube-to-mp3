@@ -1,42 +1,43 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
-const manifestForPlugIn: any = {
-  registerType: "prompt",
-  includeAssests: ["favicon.ico", "apple-touc-icon.png", "masked-icon.svg"],
-  manifest: {
-    name: "Unkai Converter",
-    short_name: "unkai-converter",
-    description: "Youtube mp3 converter",
-    icons: [
-      {
-        src: "/android-chrome-192x192.png",
-        sizes: "192x192",
-        type: "image/png",
-        purpose: "favicon",
-      },
-      {
-        src: "/android-chrome-512x512.png",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "favicon",
-      },
-      {
-        src: "/apple-touch-icon.png",
-        sizes: "180x180",
-        type: "image/png",
-        purpose: "apple touch icon",
-      },
-    ],
-    theme_color: "#171717",
-    background_color: "#f0e7db",
-    display: "standalone",
-    scope: "/",
-    start_url: "/",
-    orientation: "portrait",
-  },
-};
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), VitePWA(manifestForPlugIn)],
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: "autoUpdate",
+      includeAssets: ["favicon.ico", "apple-touch-icon.png", "mask-icon.svg"],
+      manifest: {
+        name: "Vite PWA Project",
+        short_name: "Vite PWA Project",
+        theme_color: "#ffffff",
+        icons: [
+          {
+            src: "pwa-64x64.png",
+            sizes: "64x64",
+            type: "image/png",
+          },
+          {
+            src: "pwa-192x192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "pwa-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any",
+          },
+          {
+            src: "maskable-icon-512x512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
+        ],
+      },
+    }),
+  ],
 });
